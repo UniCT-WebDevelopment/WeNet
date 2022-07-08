@@ -1,0 +1,98 @@
+version: '3'
+
+services:
+  #-------------------------------#
+  # 🖥️ Document api server        #
+  #-------------------------------#
+  pubmed-api-server:
+    container_name: pubmed-api-server-container
+    depends_on:
+      - logstash
+      - spacy
+    build:
+      context: DocumentGenerator
+      dockerfile: Dockerfile
+    image: pubmed-api-server
+    ports: 
+      - "9000:9000"
+    networks:
+      - mynetwork
+      
+  #-------------------------------#
+  # 🖥️ Spacy                      #
+  #-------------------------------#
+  spacy:
+    container_name: spacy
+    image: rosariocannavo/wenetspacy             
+    restart: on-failure  
+    ports: 
+        - "8088:8088"
+    networks:
+        - mynetwork
+    
+  #-------------------------------#
+  # 🖥️ ElasticSearch              #
+  #-------------------------------#
+  elasticsearch:
+    container_name: elasticsearch
+    hostname: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.2.0
+    ports:
+      - "9200:9200"
+      - "9300:9300"      
+    environment:
+      - node.name=elasticsearch
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - cluster.routing.allocation.disk.threshold_enabled=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks: 
+      - mynetwork
+
+  #-------------------------------#
+  # 🖥️ Logstash                   #
+  #-------------------------------#
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.11.2      
+    depends_on:
+      - elasticsearch
+    volumes: 
+      - ./Logstash/pipeline/:/usr/share/logstash/pipeline/
+    environment: 
+        - "LS_JAVA_OPTS=-Xms1g -Xmx1g"
+        - "xpack.monitoring.enabled:true"
+        - "xpack.monitoring.elasticsearch.url:http://localhost:9200"
+    ports:
+      - "10155:10155"
+    restart: on-failure 
+    networks:
+        - mynetwork
+
+  #-------------------------------#
+  # 🖥️ rest-server                #
+  #-------------------------------#
+  rest-server:
+    container_name: rest-server-container
+    depends_on:
+      - logstash
+      -  pubmed-api-server
+    build:
+      context: Computation
+      dockerfile: Dockerfile
+    image: rest-server
+    ports: 
+      - "3000:3000"
+    restart: on-failure 
+
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    name: mynetwork
+    driver: bridge

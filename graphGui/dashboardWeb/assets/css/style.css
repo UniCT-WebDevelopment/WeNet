@@ -1,0 +1,327 @@
+body {
+    --text-color:  #7386D5;
+    --bkg-color: rgb(237, 236, 236);
+    --bkg-color-navbar: #7386D5;
+    --white: #fff;
+    --bkg-color-card: #fff;
+    --text-color-car: #000;
+    --btn-color: #0dcaf0;
+  }
+  body.dark-theme{
+    --text-color: rgb(40,40,40);
+    --bkg-color: rgb(32,32,32);
+    --white: #fff;
+    --bkg-color-navbar: rgb(40,40,40);
+    --bkg-color-card: rgb(40,40,40);;
+    --text-color-car: #fff;
+    --btn-color: #fff;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    body.light-theme{
+        --text-color:  #7386D5;
+        --bkg-color: rgb(237, 236, 236);
+        --bkg-color-navbar: #7386D5;
+        --white: #fff;
+        --bkg-color-card: #fff;
+        --text-color-car: #000;
+        --btn-color: #0dcaf0;
+    }
+    body{
+        --text-color: rgb(40,40,40);
+        --bkg-color: rgb(32,32,32);
+        --bkg-color-navbar: rgb(40,40,40);
+        --bkg-color-card: rgb(40,40,40);
+        --white: #fff;
+        --text-color-car: #fff;
+        --btn-color: #fff;
+    }
+  }
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+/* ---------------------------------------------------
+    MAIN
+----------------------------------------------------- */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bkg-color) !important;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: var(--white);
+}
+a {
+    text-decoration: none !important;
+}
+.navbar {
+    padding: 15px 10px;
+    background-color: var(--bkg-color-navbar);
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------------------------------------------------
+    PIE GOOGLE
+----------------------------------------------------- */
+
+rect{
+    fill: var(--bkg-color) !important;
+}
+text {
+    fill: var(--text-color-car) !important;
+}
+
+/* ---------------------------------------------------
+    LOADING BAR
+----------------------------------------------------- */
+
+#loadingBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(200, 200, 200, 0.8);
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    opacity: 1;
+}
+#bar {
+    width: 20px;
+    height: 20px;
+    border-radius: 11px;
+    border: 2px solid rgba(30, 30, 30, 0.05);
+    background: var(--btn-color);
+    /* Old browsers */
+    box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.4);
+}
+
+#border {
+    width: 500px;
+    height: 23px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: var(--bkg-color-navbar);
+    color: var(--bkg-white);
+    transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: var(--text-color) !important;
+    color: var(--white) !important;
+}
+
+/* dashbaord */
+#sidebar ul p {
+    color: var(--white);
+    padding: 10px;
+}
+
+/* Grafi */
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    color: var(--text-color) !important;
+}
+
+a.article,
+a.article:hover {
+    background: var(--text-color) !important;
+    color: var(--white) !important;
+}
+.nav-link {
+    color: var(--white) !important;
+}
+.nav-link:hover {
+    color: var(--text-color) !important;
+    background: var(--white) !important;
+}
+#cavallo{
+    margin-bottom: 10px;
+}
+#titolo{
+    display: inline-block;
+    margin: 0;
+}
+#id_grafo {
+    color: var(--white) !important;
+}
+
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.card-info-bar {
+    width: 100%;
+    padding: 20px;
+    position: relative;
+    background-color: var(--bkg-color-card);
+    background-clip: border-box;
+    border: 0px solid black;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
+}
+
+.w-100 {
+    padding-left: 10px;
+}
+
+.card-info {
+    width: 100%;
+    position: relative;
+    background-color: var(--bkg-color-card);
+    background-clip: border-box;
+    border: 0px solid black;
+    border-radius: 0.75rem;
+    padding: 10px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
+}
+.card-info-bar p{
+    color: var(--text-color-car);
+}
+.card-info-bar h4{
+    color: var(--text-color-car);
+}
+.card-info p{
+    color: var(--text-color-car);
+}
+.info-bar-top {
+    margin-top: 30px !important;
+}
+th {
+    color: var(--text-color-car);
+}
+tr {
+    color: var(--text-color-car);
+}
+#mynetwork {
+    position: absolute;
+    height: 100%;
+}
+.bg-yellow{
+    background-color: green;
+}
+.bg-red{
+    background-color: red;
+}
+.bg-green{
+    background-color: green;
+}
+.pointer {cursor: pointer;}
+
+.btn-info, .btn{
+    margin-left: 10px;
+    background-color: var(--btn-color) !important;
+    border: var(--btn-color) !important;
+    color: var(--bkg-color) !important;
+}
+
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+
+@media screen and (max-width: 4000px) {
+ 
+    #sidebar {
+        display: block ;
+        max-width: 250px ;
+        min-width: 250px ;
+    }
+    i {
+        transform: scale(1.5);
+        zoom: 120%;
+    }
+
+    #sidebar.active {
+        display: none ;
+    }
+
+    #sidebarCollapse span {
+        display: none; 
+    }
+}
+
+
+@media screen and (max-width: 1024px)  { 
+    #sidebar {
+        display: block;
+        max-width: 70px;
+        min-width: 70px;
+    }
+    #sidebar p{
+        display: none; 
+    }
+    #sidebar h2{
+        display: none; 
+    }
+    #sidebar span{
+        display: none; 
+    }
+    #sidebar a{
+        text-align: center;
+    }
+    i{
+        transform: scale(1.5);
+        zoom: 200%;
+    }
+    #cavallo{
+        transform: scale(1.5);
+        zoom: 100%;
+    }
+    #sidebar.active {
+        display: none;
+        max-width: 70px;
+        min-width: 70px;
+    }
+
+    #sidebarCollapse span {
+        display: none; 
+    }
+}
+
+
